@@ -7,13 +7,21 @@ const Counter = () => {
   const [incVal, setIncVal] = useState(0);
   const [decVal, setDecVal] = useState(0);
   const [logs, setLogs] = useState([]);
+  const [showLogs, setshowLogs] = useState(false);
 
   const handleOperation = (event) => {
     if (event.target.id === "value_inc") {
-      setIncVal(+event.target.value);
+      if (+event.target.value >= 0) {
+        setIncVal(+event.target.value);
+      }
     } else if (event.target.id === "value_dec") {
-      setDecVal(+event.target.value);
+      if (+event.target.value >= 0) {
+        setDecVal(+event.target.value);
+      }
     }
+  };
+  const deleteLogs = (id) => {
+    setLogs(logs.filter((log) => log.id !== id));
   };
 
   const handleCounter = (operator) => {
@@ -84,9 +92,21 @@ const Counter = () => {
       </div>
       {logs.length >= 1 && (
         <div className="logs">
-          <div className="logs_container">
-            <Logs logsData={logs} />
-          </div>
+          <button
+            className="button button_info"
+            onClick={() => setshowLogs(!showLogs)}
+            style={{
+              backgroundColor: showLogs ? "black" : "#e7e7e7",
+              color: showLogs ? "#e7e7e7" : "black",
+            }}
+          >
+            {showLogs ? "Hide" : "Show"} Logs
+          </button>
+          {showLogs && (
+            <div className="logs_container">
+              <Logs logsData={logs} deleteLog={(id) => deleteLogs(id)} />
+            </div>
+          )}
         </div>
       )}
     </div>
