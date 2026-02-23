@@ -21,7 +21,8 @@ const Counter = () => {
     }
   };
   const deleteLogs = (id) => {
-    setLogs(logs.filter((log) => log.id !== id));
+    //setLogs(logs.filter((log) => log.id !== id));
+    setLogs((prevLogs) => prevLogs.filter((log) => log.id !== id));
   };
 
   const handleCounter = (operator) => {
