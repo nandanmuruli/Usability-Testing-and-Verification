@@ -48,12 +48,12 @@ const Counter = () => {
   };
 
   return (
-    <div className="main">
+    <div className="main" data-testid="counter-component">
       <div>
         <h1>COUNTER</h1>
       </div>
       <div>
-        <h3> value of counter: {counter}</h3>
+        <h3 data-testid="counter-value">value of counter: {counter}</h3>
       </div>
       <div className="buttons">
         <div className="action_section">
@@ -62,12 +62,14 @@ const Counter = () => {
               type="number"
               value={incVal}
               placeholder="0"
+              data-testid="value_inc"
               id="value_inc"
               onChange={(event) => handleOperation(event)}
             />
           </form>
           <button
             className="button button_inc"
+            data-testid="button_inc"
             onClick={() => handleCounter("+")}
           >
             Increase
@@ -79,12 +81,14 @@ const Counter = () => {
               type="number"
               value={decVal}
               placeholder="0"
+              data-testid="value_dec"
               id="value_dec"
               onChange={(event) => handleOperation(event)}
             />
           </form>
           <button
             className="button button_dec"
+            data-testid="button_dec"
             onClick={() => handleCounter("-")}
           >
             Decrease
@@ -92,9 +96,10 @@ const Counter = () => {
         </div>
       </div>
       {logs.length >= 1 && (
-        <div className="logs">
+        <div className="logs" data-testid="logs_section">
           <button
             className="button button_info"
+            data-testid="toggle-logs"
             onClick={() => setshowLogs(!showLogs)}
             style={{
               backgroundColor: showLogs ? "black" : "#e7e7e7",
@@ -104,7 +109,7 @@ const Counter = () => {
             {showLogs ? "Hide" : "Show"} Logs
           </button>
           {showLogs && (
-            <div className="logs_container">
+            <div className="logs_container" data-testid="toggle-logs">
               <Logs logsData={logs} deleteLog={(id) => deleteLogs(id)} />
             </div>
           )}
