@@ -2,7 +2,7 @@ const Home = () => {
   return (
     <div className="content">
       <h1>Welcome...</h1>
-      <p>Quality Clothing for Quality People</p>
+      <p data-testid="welcome-message">Quality Clothing for Quality People</p>
       <img src="https://via.placeholder.com/1200x200" alt="site banner" />
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima animi

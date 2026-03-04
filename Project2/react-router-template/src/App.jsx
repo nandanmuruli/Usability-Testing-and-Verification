@@ -6,6 +6,9 @@ import About from "./components/About/about.jsx";
 import Button from "./components/Button/Button.jsx";
 import Products from "./components/Products/Products.jsx";
 import { useState } from "react";
+import ProductDetails from "./components/ProductDetails/ProductDetails.jsx"
+import Info from "./components/About/info/info.jsx"
+import Offers from "./components/About/offers/Offers.jsx"
 
 const App = () => {
   const [loggedIn, setLogin] = useState(false);
@@ -43,13 +46,17 @@ const App = () => {
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/about" element={<About />} >
+          <Route path="info" element={<Info />} />
+          <Route path="offers" element={<Offers />} >
+            <Route path=":id/:type" element={<ProductDetails />} />
+          </Route>
+        </Route>
+        <Route path="/products" element={<Products isUserLoggedIn={loggedIn} isLoading={loading} />} />
         {loggedIn && (
-          <Route
-            path="/products"
-            element={<Products isUserLoggedIn={loggedIn} isLoading={loading} />}
-          />
+          <Route path="/products/:id/:type" element={<ProductDetails />} />
         )}
+        <Route path="*" element={<h3 className="error">ROUTE NOT FOUND</h3>} />
       </Routes>
     </div>
   );

@@ -1,6 +1,9 @@
 import "./ProductDetails.css";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ProductDetails = () => {
+  const { id, type } = useParams();
+  const navigate = useNavigate();
   return (
     <div className="content">
       <div className="product">
@@ -11,7 +14,9 @@ const ProductDetails = () => {
           />
         </div>
         <div className="details">
-          <h2>type - id</h2>
+          <h2>
+            {type} - {id}
+          </h2>
           <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos eaque
             repudiandae itaque dolorem nihil, voluptas corporis tempora
@@ -27,6 +32,12 @@ const ProductDetails = () => {
           </p>
         </div>
       </div>
+      <p
+        style={{ textAlign: "center", color: "blue", cursor: "pointer" }}
+        onClick={() => navigate(-1)}
+      >
+        VAPIS JAO
+      </p>
     </div>
   );
 };
